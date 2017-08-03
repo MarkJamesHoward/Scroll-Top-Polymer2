@@ -1,0 +1,121 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../paper-toast/paper-toast.html">
+
+<dom-module id="scroll-top">
+  <template>
+    <style>
+       :host {
+        display: block;
+      }
+
+      .hiddenClass {
+        display: none;
+        /* Hidden by default */
+      }
+
+      paper-toast {
+          --paper-toast-background-color: lightblue  ;
+          --paper-toast-color: black;
+      }
+
+      #myBtn {
+
+        position: fixed;
+        /* Fixed/sticky position */
+        bottom: 20px;
+        /* Place the button at the bottom of the page */
+        right: 30px;
+        /* Place the button 30px from the right */
+        z-index: 99;
+        /* Make sure it does not overlap */
+        border: none;
+        /* Remove borders */
+        outline: none;
+        /* Remove outline */
+        background-color: red;
+        /* Set a background color */
+        color: white;
+        /* Text color */
+        cursor: pointer;
+        /* Add a mouse pointer on hover */
+        padding: 15px;
+        /* Some padding */
+        border-radius: 10px;
+        /* Rounded corners */
+      }
+
+      #myBtn:hover {
+        background-color: #555;
+        /* Add a dark-grey background on hover */
+      }
+    </style>
+    <h2>Hello [[hidden]]</h2>
+
+    <paper-toast id="toastButton" horizontalAlign="right"
+    duration="0" on-click="topFunction">
+    Scroll Top</paper-toast>
+
+  </template>
+
+  <script>
+    /**
+     * `scroll-top`
+     * scroll to top
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class ScrollTop extends Polymer.Element {
+
+      constructor() {
+        super();
+        console.log('created')
+      }
+
+    connectedCallback() {
+        super.connectedCallback();
+        console.log('hook up the scroll event');
+
+        var self = this;
+
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () { self.scrollFunction() };
+      }
+
+      scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+          console.log('show the scroll to top button')
+          this.$.toastButton.open();
+
+        } else {
+           console.log('hide the scroll to top button')
+          this.$.toastButton.close();
+        }
+      }
+
+      //When the user clicks on the button, scroll to the top of the document
+      topFunction() {
+        document.body.scrollTop = 0; // For Chrome, Safari and Opera 
+        document.documentElement.scrollTop = 0; // For IE and Firefox
+      }
+
+      static get is() { return 'scroll-top'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'scroll-top'
+          },
+          hidden: {
+            type: String,
+            value: 'hiddenClass',
+            notify: true
+          }
+        };
+      }
+    }
+
+    window.customElements.define(ScrollTop.is, ScrollTop);
+  </script>
+</dom-module>
