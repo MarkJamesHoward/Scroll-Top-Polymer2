@@ -2,7 +2,7 @@
 
 [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/scrolltop/markjameshoward/scroll-top)
 
-Overview
+## Overview
 Once the page scrolls past a defined position the scroll top button will appear. 
 Clicking the button will move the page back to the top.
 
@@ -17,18 +17,16 @@ Clicking the button will move the page back to the top.
 ```
 -->
 ```html
-<scroll-top>Scroll to Top<scroll-top>
+<scroll-top activateWhen="100">
+  Scroll to Top
+<scroll-top>
 ```
-
-## Example
-
-<scroll-top activateWhen="200">
-  Back to Top!
-</scroll-top>
 
 ### Properties
 
-activateWhen: specifies the Y value in pixels that the user must scroll before the ScrollTop button will appear
+| Property | Description |
+| --- | --- | 
+| activateWhen | Specifies the Y value in pixels that the user must scroll before the ScrollTop button will appear
 
 ### Styling
 
