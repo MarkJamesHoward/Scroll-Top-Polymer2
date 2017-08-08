@@ -8,50 +8,15 @@
         display: block;
       }
 
-      .hiddenClass {
-        display: none;
-        /* Hidden by default */
-      }
-
-      paper-toast {
-          --paper-toast-background-color: var(--scroll-top-background-color, orange);
+      .toast {
+          --paper-toast-background-color : var(--scroll-top-background-color, white); 
           --paper-toast-color: var(--scroll-top-color, black);
       }
-
-      #myBtn {
-
-        position: fixed;
-        /* Fixed/sticky position */
-        bottom: 20px;
-        /* Place the button at the bottom of the page */
-        right: 30px;
-        /* Place the button 30px from the right */
-        z-index: 99;
-        /* Make sure it does not overlap */
-        border: none;
-        /* Remove borders */
-        outline: none;
-        /* Remove outline */
-        background-color: red;
-        /* Set a background color */
-        color: white;
-        /* Text color */
-        cursor: pointer;
-        /* Add a mouse pointer on hover */
-        padding: 15px;
-        /* Some padding */
-        border-radius: 10px;
-        /* Rounded corners */
-      }
-
-      #myBtn:hover {
-        background-color: #555;
-        /* Add a dark-grey background on hover */
-      }
     </style>
-    <paper-toast id="toastButton" horizontalAlign="right"
-    duration="0" on-click="topFunction">
-    Scroll Top</paper-toast>
+
+      <paper-toast class="toast" id="toastButton" duration="0" on-click="topFunction">
+        <slot></slot>
+      </paper-toast>
 
   </template>
 
@@ -68,13 +33,10 @@
 
       constructor() {
         super();
-        console.log('created')
       }
 
-    connectedCallback() {
+      connectedCallback() {
         super.connectedCallback();
-        console.log('hook up the scroll event');
-
         var self = this;
 
         // When the user scrolls down 20px from the top of the document, show the button
@@ -82,12 +44,10 @@
       }
 
       scrollFunction() {
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-          console.log('show the scroll to top button')
+        if (document.body.scrollTop > this.activatewhen || document.documentElement.scrollTop > this.activatewhen) {
           this.$.toastButton.open();
 
         } else {
-           console.log('hide the scroll to top button')
           this.$.toastButton.close();
         }
       }
@@ -101,13 +61,8 @@
       static get is() { return 'scroll-top'; }
       static get properties() {
         return {
-          prop1: {
+          activatewhen: {
             type: String,
-            value: 'scroll-top'
-          },
-          hidden: {
-            type: String,
-            value: 'hiddenClass',
             notify: true
           }
         };
