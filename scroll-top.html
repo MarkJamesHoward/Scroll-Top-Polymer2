@@ -44,11 +44,14 @@
       }
 
       scrollFunction() {
-        if (document.body.scrollTop > this.activatewhen || document.documentElement.scrollTop > this.activatewhen) {
-          this.$.toastButton.open();
+        console.log(this.enabled)
+        if (this.enabled == "true") {
+          if (document.body.scrollTop > this.activatewhen || document.documentElement.scrollTop > this.activatewhen) {
+            this.$.toastButton.open();
 
-        } else {
-          this.$.toastButton.close();
+          } else {
+            this.$.toastButton.close();
+          }
         }
       }
 
@@ -65,6 +68,11 @@
             type: String,
             notify: true,
             value: "100"
+          },
+          enabled: {
+            type: String,
+            notify: true,
+            value: true
           }
         };
       }
