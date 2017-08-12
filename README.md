@@ -27,6 +27,7 @@ Clicking the button will move the page back to the top.
 | Property | Description |
 | --- | --- | 
 | activateWhen | Specifies the Y value in pixels that the user must scroll before the ScrollTop button will appear
+| enabled | set enabled="false" to stop the scroll button from appearing. enabled ="true" to resume showing the scroll button
 
 ### Styling
 
