@@ -6,16 +6,7 @@
 Once the page scrolls past a defined position the scroll top button will appear. 
 Clicking the button will move the page back to the top.
 
-## Demo
-<!--
-```
-<custom-element-demo>
-  <template>
-    <link rel="import" href="scroll-top.html">
-  </template>
-</custom-element-demo>
-```
--->
+## Usage
 ```html
 <scroll-top activateWhen="100">
   Scroll to Top
